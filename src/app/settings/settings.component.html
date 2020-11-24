@@ -1,0 +1,53 @@
+<div class="container">
+    <a href="" [routerLink]="['']">Go To Home Page</a>
+    <h3 class="card-header mt-3">Settings List</h3>
+    <div>
+        <input type="text" (input)="applyFilter()" class="form-control mt-3" [(ngModel)]="textFilter"  placeholder="SearchText"/>
+      </div>
+    <table class="table table-hover mt-2">
+        <thead>
+            <tr class="table-info">
+                <th scope="col" [class.active]= "order ==='Id'" (click)="setOrder('Id')">Id
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+                <th scope="col" [class.active]="order === 'Key'" (click)="setOrder('Key')">Key
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+                <th scope="col" [class.active]="order === 'Section'" (click)="setOrder('Section')">Section
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+                <th scope="col" [class.active]="order === 'Value'" (click)="setOrder('Value')">Value 
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+                <th data-format-string="dd/MM/yyyy" scope="col" [class.active]="order === 'UpdateDate'" (click)="setOrder('UpdateDate')">Update Date
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+                <th scope="col" [class.active]="order === 'UpdateBy'" (click)="setOrder('UpdateBy')">Update By
+                  <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span>
+                </th>
+              </tr>
+        </thead>
+        <tbody>
+            <tr class="table-row" *ngFor="let data of settingData 
+            | orderBy: order : reverse: 'case-sensitive'
+            |filterBy:userFilter
+            | paginate : pagingConfig">
+            <th>{{data.Id}}</th>
+            <td>{{data.Section}}</td>
+            <td>{{data.Key}}</td>
+            <td>{{data.Value}}</td>
+            <td>{{data.UpdateDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{data.UpdateBy}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
+<div class="d-flex justify-content-center pagination">
+    <pagination-controls
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+    ></pagination-controls>
+</div>  

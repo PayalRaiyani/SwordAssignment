@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SwordAssignment"
+    }
+  },
+  "defaultProject": "SwordAssignment",
+  "cli": {
+    "analytics": "7fc3701f-6580-4d0b-9d7a-f86ff55e38f6"
+  }
 }
