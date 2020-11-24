@@ -54,8 +54,7 @@ export class SettingsComponent implements OnInit {
         $or : [
             { Id : this.textFilter },
             { Key : this.textFilter },
-            { UpdateBy: this.textFilter},
-            { UpdateDate: this.textFilter }
+            { UpdateBy: this.textFilter}
         ]
     };
 }
